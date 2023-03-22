@@ -1,0 +1,3 @@
+class MonstersController < ApplicationController
+
+end

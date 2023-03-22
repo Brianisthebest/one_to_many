@@ -1,4 +1,4 @@
 <h1>Dungeons Index</h1>
 <% @dungeons.each do |dungeon| %>
-  <h2><%= dungeon.name %></h2>
+  <a href="/dungeons/<%=dungeon.id%>"><%= dungeon.name %></a><br>
 <% end %>

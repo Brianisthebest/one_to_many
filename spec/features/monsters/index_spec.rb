@@ -10,6 +10,7 @@ RSpec.describe '/monster', type: :feature do
       
       visit "/monsters"
 
+      expect(page).to have_content("Monsters Index")
       expect(page).to have_content("Name: #{monster_1.name}.")
       expect(page).to have_content("Boss: #{monster_1.boss}.")
       expect(page).to have_content("Health: #{monster_1.health}.")

@@ -9,6 +9,7 @@ RSpec.describe "/dungeons", type: :feature do
       
       visit "/dungeons"
       
+      expect(page).to have_content("Dungeons Index")
       expect(page).to have_content(dungeon_1.name)
       expect(page).to have_content(dungeon_2.name)
       expect(page).to_not have_content(dungeon_1.final_level)

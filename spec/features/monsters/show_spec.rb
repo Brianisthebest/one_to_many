@@ -19,7 +19,6 @@ RSpec.describe '/monsters/:id' do
       expect(page).to have_content("ID: #{monster_2.id}")
       expect(page).to have_content("Boss: #{monster_2.boss}.")
       expect(page).to have_content("Health: #{monster_2.health}.")
-      save_and_open_page
     end
   end
 end

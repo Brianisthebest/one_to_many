@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe '/dungeons/show' do
+RSpec.describe '/dungeons/:id' do
   # User Story 2
   describe 'as a visitor, when I visit the dungeons show page' do
     it 'will show all the dungeon attributes' do

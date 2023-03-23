@@ -8,7 +8,7 @@ RSpec.describe "/dungeons", type: :feature do
       dungeon_2 = Dungeon.create(name: "Gross Sewers?", final_level: false,  difficulty: 2)
       Dungeon.create(name: "Lake of Rot", final_level: false,  difficulty: 5)
       visit "/dungeons"
-      save_and_open_page
+
       expect(page).to have_content("Dungeons Index")
       expect(page).to have_content(dungeon_1.name)
       expect(page).to have_content(dungeon_2.name)

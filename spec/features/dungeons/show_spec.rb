@@ -25,7 +25,7 @@ RSpec.describe '/dungeons/:id' do
       expect(page).to have_content("Difficulty: #{@dungeon_2.difficulty}.")
     end
 
-    # User Story 7, Parent Child Count
+    # User Story 7
     it 'well show the count for monsters in dungeon' do
       visit "/dungeons/#{@dungeon_1.id}"
 
@@ -34,6 +34,14 @@ RSpec.describe '/dungeons/:id' do
       visit "/dungeons/#{@dungeon_2.id}"
 
       expect(page).to have_content("Monster Count: #{@dungeon_2.monster_count}.")
+    end
+
+    it 'will display a link to dungeon and monster index' do
+      visit "/dungeons"
+      # require 'pry'; binding.pry
+
+      expect(page).to have_link("Dungeons")
+      expect(page).to have_link("Monsters")
     end
   end
 end

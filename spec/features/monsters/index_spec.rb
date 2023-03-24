@@ -26,5 +26,13 @@ RSpec.describe '/monster', type: :feature do
       expect(page).to have_content("Boss: #{@monster_2.boss}.")
       expect(page).to have_content("Health: #{@monster_2.health}.")
     end
+
+    it 'will display a link to dungeon and monster index' do
+      visit "/dungeons"
+      # require 'pry'; binding.pry
+
+      expect(page).to have_link("Dungeons")
+      expect(page).to have_link("Monsters")
+    end
   end
 end

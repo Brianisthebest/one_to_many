@@ -15,12 +15,14 @@ RSpec.describe Dungeon, type: :model do
     end
       
 
-    describe "instance methods" do
+    describe "class methods" do
       it "#sorted_by_most_recent" do
         expect(Dungeon.sort_by_most_recent).to eq([@dungeon_3, @dungeon_1, @dungeon_2])
       end
-
-      it "monster_counts" do
+    end
+    
+    describe "instance methods" do
+      it "#monster_counts" do
         expect(@dungeon_1.monster_count).to eq(1)
         expect(@dungeon_2.monster_count).to eq(2)
       end

@@ -1,6 +1,6 @@
 class DungeonsController < ApplicationController
   def index
-    @dungeons = Dungeon.all
+    @dungeons = Dungeon.sort_by_most_recent
   end
 
   def show

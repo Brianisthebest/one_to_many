@@ -2,6 +2,6 @@
 <h2><%= link_to "Create Dungeon", "/dungeons/new" %></h2>
 <% @dungeons.each do |dungeon| %>
   <h2><%= link_to dungeon.name, "/dungeons/#{dungeon.id}" %></h2>
-  <p><%= link_to "Edit Dungeon", "dungeons/#{dungeon.id}/edit" %>
+  <p><%= link_to "Edit Dungeon", "/dungeons/#{dungeon.id}/edit" %>
   <p><%= "Created at: #{dungeon.created_at}" %></p>
 <% end %>

@@ -53,10 +53,10 @@ RSpec.describe "/dungeons", type: :feature do
       
       visit "/dungeons"
 
-      expect(page).to have_link("Edit Dungeon", href: "/dungeons/#{dungeon.id}/edit")
+      expect(page).to have_link("Edit Dungeon")
 
       click_link "Edit Dungeon"
-      expect(current_path).to eq("/dungeons/#{dungeon}/edit")
+      expect(current_path).to eq("/dungeons/#{dungeon.id}/edit")
     end
   end
 end

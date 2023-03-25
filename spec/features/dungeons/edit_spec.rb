@@ -1,28 +1,36 @@
 require 'rails_helper'
 
-before(:each) do
-  Dungeon.delete_all
-  @dungeon_1 = Dungeon.create!(name: "Big Bad Things", final_level: true,  difficulty: 5)
-  @dungeon_2 = Dungeon.create!(name: "Gross Sewers?", final_level: false,  difficulty: 2)
-end
-
 RSpec.describe '/new' do
+  before(:each) do
+    Dungeon.delete_all
+    @dungeon_1 = Dungeon.create!(name: "Big Bad Things", final_level: true,  difficulty: 5)
+  end
+
   describe '#edit_form' do
     it 'will display a form to update the dungeon information and redirect to the dungeon show page' do
       visit "/dungeons/#{@dungeon_1.id}/edit"
-      save_and_open_page
+
       expect(page).to have_field("Name")
       expect(page).to have_content("Final level")
       expect(page).to have_unchecked_field("True")
       expect(page).to have_unchecked_field("False")
       expect(page).to have_field("Difficulty")
-    
-    # Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:
-    # When I fill out the form with updated information
-    # And I click the button to submit the form
-    # Then a `PATCH` request is sent to '/parents/:id',
-    # the parent's info is updated,
-    # and I am redirected to the Parent's Show page where I see the parent's updated info
+    end
+    it 'will edit the dungeon after the form is filled and submitted' do
+      visit "/dungeons/#{@dungeon_1.id}/edit"
+
+      fill_in("Name", with: "Rancid Tomb")
+      choose("False")
+      fill_in("Difficulty", with: "7")
+      click_on("Edit Dungeon")
+
+      expect(current_path).to eq("/dungeons/#{@dungeon_1.id}")
+      expect(page).to have_content("Rancid Tomb")
+      expect(page).to have_no_content("Big Bad Things")
+      expect(page).to have_content("false")
+      expect(page).to have_no_content("true")
+      expect(page).to have_content("7")
+      expect(page).to have_no_content("5")
     end
   end
 end

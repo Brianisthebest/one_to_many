@@ -1,10 +1,12 @@
 RSpec.describe '/dungeons/:id/monsters' do
   before(:each) do
+    Dungeon.delete_all
+    Monster.delete_all
     @dungeon_1 = Dungeon.create!(name: "Big Bad Things", final_level: true,  difficulty: 5)
     @dungeon_2 = Dungeon.create!(name: "Gross Sewers?", final_level: false,  difficulty: 2)
-    @monster_1 = Monster.create!(name: "Goblin", boss: false, health: 15, dungeon_id: @dungeon_1.id)
-    @monster_2 = Monster.create!(name: "Medusa", boss: true, health: 75, dungeon_id: @dungeon_2.id)
-    @monster_3 = Monster.create!(name: "Skeleton", boss: false, health: 25, dungeon_id: @dungeon_2.id)
+    @monster_1 = @dungeon_1.monsters.create!(name: "Goblin", boss: false, health: 15, dungeon_id: @dungeon_1.id)
+    @monster_2 = @dungeon_2.monsters.create!(name: "Medusa", boss: true, health: 75, dungeon_id: @dungeon_2.id)
+    @monster_3 = @dungeon_2.monsters.create!(name: "Skeleton", boss: false, health: 25, dungeon_id: @dungeon_2.id)
   end
   # User Story 5
   describe 'as a visitor, when I visit the dungeon monsters index page' do
@@ -28,11 +30,15 @@ RSpec.describe '/dungeons/:id/monsters' do
     end
 
     it 'will display a link to dungeon and monster index' do
-      visit "/dungeons"
-      # require 'pry'; binding.pry
+      visit "/dungeons/#{@dungeon_1.id}/monsters"
 
-      expect(page).to have_link("Dungeons")
-      expect(page).to have_link("Monsters")
+      expect(page).to have_link("Dungeons", href: "/dungeons")
+      expect(page).to have_link("Monsters", href: "/monsters")
+
+      visit "/dungeons/#{@dungeon_2.id}/monsters"
+
+      expect(page).to have_link("Dungeons", href: "/dungeons")
+      expect(page).to have_link("Monsters", href: "/monsters")
     end
   end
 end

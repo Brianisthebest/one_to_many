@@ -27,10 +27,17 @@ RSpec.describe "/dungeons", type: :feature do
 
     it 'will display a link to dungeon and monster index' do
       visit "/dungeons"
-      # require 'pry'; binding.pry
 
-      expect(page).to have_link("Dungeons")
-      expect(page).to have_link("Monsters")
+      expect(page).to have_link("Dungeons", href: "/dungeons")
+      expect(page).to have_link("Monsters", href: "/monsters")
+
+      click_link "Dungeons"
+
+      expect(current_path).to eq("/dungeons")
+
+      click_link "Monsters"
+
+      expect(current_path).to eq("/monsters")
     end
   end
 end

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe '/monsters/:id' do
   before(:each) do
+    Dungeon.delete_all
+    Monster.delete_all
     @dungeon_1 = Dungeon.create!(name: "Big Bad Things", final_level: true,  difficulty: 5)
     @monster_1 = Monster.create!(name: "Goblin", boss: false, health: 15, dungeon_id: @dungeon_1.id)
     @monster_2 = Monster.create!(name: "Medusa", boss: true, health: 75, dungeon_id: @dungeon_1.id)
@@ -23,11 +25,15 @@ RSpec.describe '/monsters/:id' do
     end
 
     it 'will display a link to dungeon and monster index' do
-      visit "/dungeons"
-      # require 'pry'; binding.pry
+      visit "/monsters/#{@monster_1.id}"
 
-      expect(page).to have_link("Dungeons")
-      expect(page).to have_link("Monsters")
+      expect(page).to have_link("Dungeons", href: "/dungeons")
+      expect(page).to have_link("Monsters", href: "/monsters")
+
+      visit "/monsters/#{@monster_2.id}"
+
+      expect(page).to have_link("Dungeons", href: "/dungeons")
+      expect(page).to have_link("Monsters", href: "/monsters")
     end
   end
 end

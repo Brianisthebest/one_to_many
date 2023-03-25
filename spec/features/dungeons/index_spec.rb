@@ -38,7 +38,7 @@ RSpec.describe "/dungeons", type: :feature do
       expect(current_path).to eq("/monsters")
     end
     # User Story 11, Parent Creation 
-    it 'will display a link to create a new dungeon and route to that path' do
+    it 'will display a link to create a new dungeon and route to the dungeons/new path' do
       visit "/dungeons"
 
       expect(page).to have_link("Create Dungeon", href: "/dungeons/new")
@@ -46,5 +46,28 @@ RSpec.describe "/dungeons", type: :feature do
       click_link "Create Dungeon"
       expect(current_path).to eq("/dungeons/new")
     end
+    # User Story 12, Parent Update 
+    it 'will display a link to update a new dungeon and route to the dungeons/:id/edit path' do
+      Dungeon.delete_all
+      dungeon = Dungeon.create(name: "Edit Test", final_level: false,  difficulty: 4)
+      
+      visit "/dungeons"
+
+      expect(page).to have_link("Edit Dungeon", href: "/dungeons/#{dungeon.id}/edit")
+
+      click_link "Edit Dungeon"
+      expect(current_path).to eq("/dungeons/#{dungeon}/edit")
+    end
+# As a visitor
+# When I visit a parent show page
+# Then I see a link to update the parent "Update Parent"
+# When I click the link "Update Parent"
+
+# Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:
+# When I fill out the form with updated information
+# And I click the button to submit the form
+# Then a `PATCH` request is sent to '/parents/:id',
+# the parent's info is updated,
+# and I am redirected to the Parent's Show page where I see the parent's updated info
   end
 end

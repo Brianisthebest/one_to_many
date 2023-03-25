@@ -1,5 +1,6 @@
 <h1>Dungeons Index</h1>
+<h2><%= link_to "Create Dungeon", "/dungeons/new" %></h2>
 <% @dungeons.each do |dungeon| %>
   <h2><%= link_to dungeon.name, "/dungeons/#{dungeon.id}" %></h2>
-  <p>Created at: <%= dungeon.created_at %></p>
+  <p><%= "Created at: #{dungeon.created_at}" %></p>
 <% end %>

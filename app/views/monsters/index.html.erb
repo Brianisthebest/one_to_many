@@ -1,6 +1,6 @@
 <h1>Monsters Index</h1>
 <% @monsters.each do |monster| %>
-<p>Name: <%= monster.name %>.</p>
-<p>Boss: <%= monster.boss %>.</p>
-<p>Health: <%= monster.health %>.</p><br>
+<p><%= "Name: #{monster.name}." %></p>
+<p><%= "Boss: #{monster.boss}." %></p>
+<p><%= "Health: #{monster.health}." %>.</p><br>
 <% end %>

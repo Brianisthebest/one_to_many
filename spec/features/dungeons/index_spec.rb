@@ -32,12 +32,19 @@ RSpec.describe "/dungeons", type: :feature do
       expect(page).to have_link("Monsters", href: "/monsters")
 
       click_link "Dungeons"
-
       expect(current_path).to eq("/dungeons")
 
       click_link "Monsters"
-
       expect(current_path).to eq("/monsters")
+    end
+    # User Story 11, Parent Creation 
+    it 'will display a link to create a new dungeon and route to that path' do
+      visit "/dungeons"
+
+      expect(page).to have_link("Create Dungeon", href: "/dungeons/new")
+
+      click_link "Create Dungeon"
+      expect(current_path).to eq("/dungeons/new")
     end
   end
 end

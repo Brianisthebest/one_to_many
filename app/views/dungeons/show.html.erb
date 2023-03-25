@@ -1,6 +1,6 @@
 <h1><%= @dungeon.name %></h1>
-<p>ID: <%= @dungeon.id %></p>
-<p>Final Level: <%= @dungeon.final_level%>.</p>
-<p>Difficulty: <%= @dungeon.difficulty%>.</p>
-<p>Monster Count: <%= @dungeon.monster_count %>.</p>
+<p><%= "ID: #{@dungeon.id}" %></p>
+<p><%= "Final Level: #{@dungeon.final_level}." %></p>
+<p><%= "Difficulty: #{@dungeon.difficulty}." %></p>
+<p><%= "Monster Count: #{@dungeon.monster_count}." %></p>
 <p><%= link_to "Monster List ","/dungeons/#{@dungeon.id}/monsters" %></p>

@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe '/dungeons/:id/monsters' do
   before(:each) do
     Dungeon.delete_all
@@ -13,14 +15,15 @@ RSpec.describe '/dungeons/:id/monsters' do
     it 'will show me each monster and attributes associated with that dungeon' do
       visit "/dungeons/#{@dungeon_1.id}/monsters"
 
-      expect(page).to have_content("Dungeon #{@dungeon_1.id}")
+      expect(page).to have_content(@dungeon_1.name)
+      expect(page).to have_content("Dungeon ID: #{@dungeon_1.id}")
       expect(page).to have_content(@monster_1.name)
       expect(page).to have_content("Boss: #{@monster_1.boss}")
       expect(page).to have_content("Health: #{@monster_1.health}")
       
       visit "/dungeons/#{@dungeon_2.id}/monsters"
 
-      expect(page).to have_content("Dungeon #{@dungeon_2.id}")
+      expect(page).to have_content("Dungeon ID: #{@dungeon_2.id}")
       expect(page).to have_content(@monster_2.name)
       expect(page).to have_content("Boss: #{@monster_2.boss}")
       expect(page).to have_content("Health: #{@monster_2.health}")

@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   get '/dungeons/:id/edit', to: 'dungeons#edit'
   patch '/dungeons/:id', to: 'dungeons#update'
   get '/dungeons/:id', to: 'dungeons#show'
+
   get '/dungeons/:dungeon_id/monsters', to: 'dungeons/monsters#index'
+  get '/dungeons/:dungeon_id/monsters/new', to: 'dungeons/monsters#new'
+  post '/dungeons/:dungeon_id/monsters/new', to: 'dungeons/monsters#create'
   get '/monsters', to: 'monsters#index'
   get '/monsters/:id', to: 'monsters#show'
 end

@@ -27,10 +27,10 @@ RSpec.describe '/new' do
       expect(current_path).to eq("/dungeons/#{@dungeon_1.id}")
       expect(page).to have_content("Rancid Tomb")
       expect(page).to have_no_content("Big Bad Things")
-      expect(page).to have_content("false")
-      expect(page).to have_no_content("true")
-      expect(page).to have_content("7")
-      expect(page).to have_no_content("5")
+      expect(page).to have_content("Final Level: false")
+      expect(page).to have_no_content("Final Level: true")
+      expect(page).to have_content("Difficulty: 7")
+      expect(page).to have_no_content("Difficulty: 5")
     end
   end
 end

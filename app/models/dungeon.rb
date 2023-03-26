@@ -8,4 +8,9 @@ class Dungeon < ApplicationRecord
   def monster_count
     monsters.count
   end
+
+  def sort_alphabetically
+    require 'pry'; binding.pry
+    monsters.order(:name)
+  end
 end

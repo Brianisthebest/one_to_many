@@ -64,7 +64,7 @@ RSpec.describe '/dungeons/:id' do
 
     it 'will display a link to edit the dungeon' do
       visit "/dungeons/#{@dungeon_1.id}"
-      save_and_open_page
+
       expect(page).to have_link("Edit Dungeon")
       click_link("Edit Dungeon")
       expect(current_path).to eq("/dungeons/#{@dungeon_1.id}/edit")

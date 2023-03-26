@@ -14,7 +14,12 @@ class MonstersController < ApplicationController
 
   def update
     monster = Monster.find(params[:id])
-    monster.update(name: params[:name], boss: params[:boss], health: params[:health])
+    monster.update(monster_params)
     redirect_to "/monsters/#{monster.id}"
+  end
+
+private
+  def monster_params
+    params.permit(:name, :boss, :health)
   end
 end

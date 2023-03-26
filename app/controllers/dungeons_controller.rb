@@ -11,17 +11,22 @@ class DungeonsController < ApplicationController
   end
 
   def create
-    Dungeon.create(name: params[:name], final_level: params[:final_level], difficulty: params[:difficulty])
+    Dungeon.create(dungeon_params)
     redirect_to "/dungeons"
   end
 
   def edit
-    @edit_dungeon =  @dungeon = Dungeon.find(params[:id])
+    @edit_dungeon = Dungeon.find(params[:id])
   end
 
   def update
     dungeon = Dungeon.find(params[:id])
-    dungeon.update(name: params[:name], final_level: params[:final_level], difficulty: params[:difficulty])
+    dungeon.update(dungeon_params)
     redirect_to "/dungeons/#{dungeon.id}"
+  end
+
+private
+  def dungeon_params
+    params.permit(:name, :final_level, :difficulty)
   end
 end

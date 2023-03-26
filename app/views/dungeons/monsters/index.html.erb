@@ -4,4 +4,5 @@
   <h2><%= monster.name %></h2>
   <p><%= "Boss: #{monster.boss}" %></p>
   <p><%= "Health: #{monster.health}" %></p>
+  <p><%= link_to "Update Monster", "/monsters/#{monster.id}/edit"%></p><br>
 <% end %>

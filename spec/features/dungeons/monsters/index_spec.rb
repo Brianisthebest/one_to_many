@@ -51,7 +51,7 @@ RSpec.describe '/dungeons/:id/monsters' do
     end
 
     it 'will display a link to sort monsters alphabetically' do
-      visit "/dungeons/#{@dungeon_2.id}/monsters"
+      visit "/dungeons/#{@dungeon_2.id}/monsters?sort=abc"
       save_and_open_page
       expect(page).to have_link("Sort Alphabetically")
       click_link("Sort Alphabetically")

@@ -10,7 +10,14 @@ class Dungeon < ApplicationRecord
   end
 
   def sort_alphabetically
-    require 'pry'; binding.pry
     monsters.order(:name)
+  end
+
+  def sort_by(params)
+    if params[:sort] == 'abc'
+      monsters.order(:name)
+    else
+      monsters.order(:created_at)
+    end
   end
 end

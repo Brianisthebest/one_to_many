@@ -38,8 +38,5 @@ save_and_open_page
       expect(page).to have_content("Name: BBEG")
       expect(page).to_not have_content("Name: Goblin")
     end
-# As a visitor
-# When I visit the child index
-# Then I only see records where the boolean column is `true`
   end
 end

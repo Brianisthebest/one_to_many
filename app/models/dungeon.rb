@@ -6,6 +6,6 @@ class Dungeon < ApplicationRecord
   end
 
   def monster_count
-    self.monsters.count
+    monsters.count
   end
 end

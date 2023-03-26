@@ -1,6 +1,7 @@
-<h1> Dungeon <%= @dungeon.id %></h1>
+<h1><%= @dungeon.name %></h1>
+<h2>Dungeon ID: <%= @dungeon.id %></h2>
 <% @monsters.each do |monster| %>
   <h2><%= monster.name %></h2>
-  <p>Boss: <%= monster.boss %></p>
-  <p>Health: <%= monster.health %></p>
+  <p><%= "Boss: #{monster.boss}" %></p>
+  <p><%= "Health: #{monster.health}" %></p>
 <% end %>

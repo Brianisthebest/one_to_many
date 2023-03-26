@@ -18,7 +18,6 @@ RSpec.describe '/monster', type: :feature do
       expect(page).to have_content("Name: #{@monster_1.name}.")
       expect(page).to have_content("Boss: #{@monster_1.boss}.")
       expect(page).to have_content("Health: #{@monster_1.health}.")
-
       expect(page).to have_content("Name: #{@monster_2.name}.")
       expect(page).to have_content("Boss: #{@monster_2.boss}.")
       expect(page).to have_content("Health: #{@monster_2.health}.")

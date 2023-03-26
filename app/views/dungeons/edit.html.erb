@@ -1,0 +1,12 @@
+<%= form_with url: "/dungeons/#{@edit_dungeon.id}", method: :patch, local: :true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br>
+  <%= form.label :final_level%>
+  <%= form.radio_button :final_level, true %>
+  <%= form.label :final_level_true, "True" %>
+  <%= form.radio_button :final_level, false %>
+  <%= form.label :final_level_false, "False" %><br>
+  <%= form.label :difficulty %>
+  <%= form.number_field :difficulty, in: 1.0..10.0, step: 1.0 %><br>
+  <%= form.submit "Edit Dungeon" %>
+<% end %>

@@ -32,12 +32,31 @@ RSpec.describe "/dungeons", type: :feature do
       expect(page).to have_link("Monsters", href: "/monsters")
 
       click_link "Dungeons"
-
       expect(current_path).to eq("/dungeons")
 
       click_link "Monsters"
-
       expect(current_path).to eq("/monsters")
+    end
+    # User Story 11, Parent Creation 
+    it 'will display a link to create a new dungeon and route to the dungeons/new path' do
+      visit "/dungeons"
+
+      expect(page).to have_link("Create Dungeon", href: "/dungeons/new")
+
+      click_link "Create Dungeon"
+      expect(current_path).to eq("/dungeons/new")
+    end
+    # User Story 12, Parent Update 
+    it 'will display a link to update a new dungeon and route to the dungeons/:id/edit path' do
+      Dungeon.delete_all
+      dungeon = Dungeon.create(name: "Edit Test", final_level: false,  difficulty: 4)
+      
+      visit "/dungeons"
+
+      expect(page).to have_link("Edit Dungeon")
+
+      click_link "Edit Dungeon"
+      expect(current_path).to eq("/dungeons/#{dungeon.id}/edit")
     end
   end
 end

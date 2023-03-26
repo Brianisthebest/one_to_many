@@ -1,0 +1,12 @@
+<%= form_with method: :patch, local: :true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br>
+  <%= form.label :boss %>
+  <%= form.radio_button :boss, true %>
+  <%= form.label :boss_true, "True" %>
+  <%= form.radio_button :boss, false %>
+  <%= form.label :boss_false, "False" %><br>
+  <%= form.label :health %>
+  <%= form.number_field :health, in: 0.0..500.0, step: 5.0 %><br>
+  <%= form.submit "Update Monster" %>
+<% end %>

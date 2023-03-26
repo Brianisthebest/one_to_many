@@ -35,5 +35,11 @@ RSpec.describe '/monsters/:id' do
       expect(page).to have_link("Dungeons", href: "/dungeons")
       expect(page).to have_link("Monsters", href: "/monsters")
     end
+    # User Story 14
+    it 'will display a link to update the monster which takes the user to /monsters/:id/edit' do
+      visit "/monsters/#{@monster_1.id}"
+
+      expect(page).to have_link("Update Monster", href: "/monsters/#{@monster_1.id}/edit")
+    end
   end
 end

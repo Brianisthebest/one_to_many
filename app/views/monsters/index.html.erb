@@ -2,5 +2,6 @@
 <% @monsters.each do |monster| %>
 <p><%= "Name: #{monster.name}." %></p>
 <p><%= "Boss: #{monster.boss}." %></p>
-<p><%= "Health: #{monster.health}." %></p><br>
+<p><%= "Health: #{monster.health}." %></p>
+<p><%= link_to "View Monster", "/monsters/#{monster.id}"%></p><br>
 <% end %>

@@ -1,6 +1,7 @@
 class MonstersController < ApplicationController
   def index
     @monsters = Monster.all
+    # @monsters_true = @monsters.only_true
   end
 
   def show

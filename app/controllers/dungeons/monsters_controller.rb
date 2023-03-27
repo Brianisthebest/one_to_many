@@ -1,9 +1,8 @@
-# module Dungeon
+# module Dungeons
 class Dungeons::MonstersController < ApplicationController
   def index
     @dungeon = Dungeon.find(params[:dungeon_id])
     @monsters = @dungeon.sort_by(params)
-    
   end
 
   def new

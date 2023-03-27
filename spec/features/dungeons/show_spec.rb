@@ -25,7 +25,6 @@ RSpec.describe '/dungeons/:id' do
       expect(page).to have_content("Final Level: #{@dungeon_2.final_level}.")
       expect(page).to have_content("Difficulty: #{@dungeon_2.difficulty}.")
     end
-
     # User Story 7
     it 'well show the count for monsters in dungeon' do
       visit "/dungeons/#{@dungeon_1.id}"
@@ -79,7 +78,7 @@ RSpec.describe '/dungeons/:id' do
 
       expect(current_path).to eq("/dungeons/#{@dungeon_1.id}/monsters/new")
     end
-    # User Story 19, Parent Delete 
+    # User Story 19
     it 'will have a button to delete the parent' do
       visit "dungeons/#{@dungeon_3.id}"
 

@@ -41,5 +41,20 @@ RSpec.describe '/monsters/:id' do
 
       expect(page).to have_link("Update Monster", href: "/monsters/#{@monster_1.id}/edit")
     end
+    # User Story 20
+    it 'will display a link to delete the monster' do
+      visit "/monsters/#{@monster_1.id}"
+
+      expect(page).to have_link("Delete Monster")
+      expect(current_path).to eq("/monsters/#{@monster_1.id}")
+    end
+
+    it 'will delete the monster when the link is clicked and redirect to the monster index' do
+      visit "/monsters/#{@monster_1.id}"
+      click_link "Delete Monster"
+
+      expect(current_path).to eq("/monsters")
+      expect(page).to_not have_content("Goblin")
+    end
   end
 end

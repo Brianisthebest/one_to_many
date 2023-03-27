@@ -17,7 +17,7 @@ class Dungeon < ApplicationRecord
     if params[:sort] == 'abc'
       monsters.order(:name)
     else
-      monsters.order(:created_at)
+      monsters.order(created_at: :desc)
     end
   end
 end

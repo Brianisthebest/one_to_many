@@ -1,7 +1,8 @@
 <h1>Monsters Index</h1>
 <% @monsters.each do |monster| %>
-<p><%= "Name: #{monster.name}." %></p>
-<p><%= "Boss: #{monster.boss}." %></p>
-<p><%= "Health: #{monster.health}." %></p>
-<p><%= link_to "View Monster", "/monsters/#{monster.id}"%></p><br>
+<p><%= "Name: #{monster.name}" %></p>
+<p><%= "Boss: #{monster.boss}" %></p>
+<p><%= "Health: #{monster.health}" %></p>
+<p><%= link_to "View Monster", "/monsters/#{monster.id}"%></p>
+<p><%= link_to "Update Monster", "/monsters/#{monster.id}/edit"%></p><br>
 <% end %>

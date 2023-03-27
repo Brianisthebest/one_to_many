@@ -8,4 +8,16 @@ class Dungeon < ApplicationRecord
   def monster_count
     monsters.count
   end
+
+  def sort_alphabetically
+    monsters.order(:name)
+  end
+
+  def sort_by(params)
+    if params[:sort] == 'abc'
+      monsters.order(:name)
+    else
+      monsters.order(:created_at)
+    end
+  end
 end

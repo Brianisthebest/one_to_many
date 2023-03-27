@@ -12,6 +12,7 @@ RSpec.describe Dungeon, type: :model do
       @skeleton = @dungeon_1.monsters.create!(name: "Skeleton", boss: false, health: 10)
       @demi_human = @dungeon_2.monsters.create!(name: "Demi Human", boss: false, health: 25)
       @malenia = @dungeon_2.monsters.create!(name: "Malenia", boss: true, health: 200)
+      @bones = @dungeon_2.monsters.create!(name: "Bones", boss: false, health: 5)
     end
       
 
@@ -24,7 +25,18 @@ RSpec.describe Dungeon, type: :model do
     describe "instance methods" do
       it "#monster_counts" do
         expect(@dungeon_1.monster_count).to eq(1)
-        expect(@dungeon_2.monster_count).to eq(2)
+        expect(@dungeon_2.monster_count).to eq(3)
       end
+      #     User Story 16, Sort Parent's Children in Alphabetical Order by name 
+      it '#sort_alphabetically' do
+        expect(@dungeon_2.monsters).to eq([@demi_human, @malenia, @bones])
+        expect(@dungeon_2.sort_alphabetically).to eq([@bones ,@demi_human, @malenia])
+      end
+# As a visitor
+# When I visit the Parent's children Index Page
+# Then I see a link to sort children in alphabetical order
+# When I click on the link
+# I'm taken back to the Parent's children Index Page 
+# where I see all of the parent's children in alphabetical order
     end
   end

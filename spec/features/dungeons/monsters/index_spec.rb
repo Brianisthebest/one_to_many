@@ -8,7 +8,7 @@ RSpec.describe '/dungeons/:id/monsters' do
     @dungeon_2 = Dungeon.create!(name: "Gross Sewers?", final_level: false,  difficulty: 2)
     @monster_1 = @dungeon_1.monsters.create!(name: "Goblin", boss: false, health: 15, dungeon_id: @dungeon_1.id)
     @monster_2 = @dungeon_2.monsters.create!(name: "Medusa", boss: true, health: 75, dungeon_id: @dungeon_2.id)
-    @monster_3 = @dungeon_2.monsters.create!(name: "Skeleton", boss: false, health: 25, dungeon_id: @dungeon_2.id)
+    @monster_3 = @dungeon_2.monsters.create!(name: "Bad Skeleton", boss: false, health: 25, dungeon_id: @dungeon_2.id)
   end
   # User Story 5
   describe 'as a visitor, when I visit the dungeon monsters index page' do
@@ -42,6 +42,20 @@ RSpec.describe '/dungeons/:id/monsters' do
 
       expect(page).to have_link("Dungeons", href: "/dungeons")
       expect(page).to have_link("Monsters", href: "/monsters")
+    end
+
+    it 'will display a link to update the monster' do
+      visit "/dungeons/#{@dungeon_1.id}/monsters"
+
+      expect(page).to have_link("Update Monster", href: "/monsters/#{@monster_1.id}/edit")
+    end
+
+    it 'will display a link to sort monsters alphabetically' do
+      visit "/dungeons/#{@dungeon_2.id}/monsters?sort=abc"
+      save_and_open_page
+      expect(page).to have_link("Sort Alphabetically")
+      click_link("Sort Alphabetically")
+      expect(@monster_3.name).to appear_before(@monster_2.name)
     end
   end
 end

@@ -56,12 +56,18 @@ RSpec.describe '/dungeons/:id' do
     # User Story 10
     it 'it will display a link to the parents child page' do
       visit "/dungeons/#{@dungeon_1.id}"
-
       expect(page).to have_link("Monster List", href: "/dungeons/#{@dungeon_1.id}/monsters")
 
       visit "/dungeons/#{@dungeon_2.id}"
-
       expect(page).to have_link("Monster List", href: "/dungeons/#{@dungeon_2.id}/monsters")
+    end
+
+    it 'will display a link to edit the dungeon' do
+      visit "/dungeons/#{@dungeon_1.id}"
+
+      expect(page).to have_link("Edit Dungeon")
+      click_link("Edit Dungeon")
+      expect(current_path).to eq("/dungeons/#{@dungeon_1.id}/edit")
     end
     # User Story 13
     it 'will display a link to create a new monster for the dungeon and direct to the /dungeon/:id/monster/new path' do

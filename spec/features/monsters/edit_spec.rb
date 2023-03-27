@@ -16,6 +16,7 @@ RSpec.describe '/monsters/:id/edit' do
       expect(page).to have_unchecked_field("False")
       expect(page).to have_field("Health")
     end
+    
     it 'will edit the dungeon after the form is filled and submitted' do
       visit "/monsters/#{@monster_1.id}/edit"
 

@@ -11,3 +11,8 @@
 <% end %>
 
 <p><%= link_to "Sort Alphabetically", "/dungeons/#{@dungeon.id}/monsters?sort=abc" %></p>
+<%= form_with local: true do |form| %>
+  <%= form.label :length %>
+  <%= form.text_field :length %>
+  <%= form.submit "Only return monsters with Health more than" %>
+<% end %>

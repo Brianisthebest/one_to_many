@@ -20,4 +20,12 @@ class Dungeon < ApplicationRecord
       monsters.order(created_at: :desc)
     end
   end
+
+  def select_with_length(params)
+    if params.include?(:length)
+      monsters.where("health >= ?", params[:length])
+    else
+      monsters
+    end
+  end
 end

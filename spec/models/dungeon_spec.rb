@@ -21,7 +21,7 @@ RSpec.describe Dungeon, type: :model do
         expect(Dungeon.sort_by_most_recent).to eq([@dungeon_3, @dungeon_1, @dungeon_2])
       end
     end
-    –
+    
       it "#monster_counts" do
         expect(@dungeon_1.monster_count).to eq(1)
         expect(@dungeon_2.monster_count).to eq(3)
@@ -34,9 +34,15 @@ RSpec.describe Dungeon, type: :model do
       end
 
       describe '#sort_by' do
-        it 'can sort by name and created time' do
+        it 'can sort by alphabetical and created time' do
           expect(@dungeon_2.sort_by({sort: 'abc'})).to eq([@bones ,@demi_human, @malenia])
           expect(@dungeon_2.sort_by({sort: 'created_at'})).to eq([@malenia, @bones, @demi_human])
+        end
+      end
+
+      describe '::select_monster_amount(params)' do
+        it 'will return the amount of monsters specified' do
+          expect(@dungeon_2.select_with_length({length: 50})).to eq([@malenia])
         end
       end
     end

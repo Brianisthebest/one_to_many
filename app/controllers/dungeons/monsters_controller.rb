@@ -18,6 +18,7 @@ class Dungeons::MonstersController < ApplicationController
   def show
     @dungeon = Dungeon.find(params[:dungeon_id])
     @dungeon.select_with_length(params)
+    @monsters = @dungeon.sort_by(params)
     redirect_to "/dungeons/#{@dungeon.id}/monsters"
   end
 end

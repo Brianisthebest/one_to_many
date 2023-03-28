@@ -77,7 +77,7 @@ RSpec.describe '/dungeons/:id/monsters' do
       visit "/dungeons/#{@dungeon_1.id}/monsters"
 
       expect(page).to have_button("Only return monsters with Health more than")
-      expect(page).to have_field("Sort")
+      expect(page).to have_field("Length")
     end
 
     it 'will display only the monsters with health greater than the input value' do
@@ -86,8 +86,9 @@ RSpec.describe '/dungeons/:id/monsters' do
 
       visit "/dungeons/#{@dungeon_1.id}/monsters"
       
-      fill_in("Sort", with: 10)
-save_and_open_page
+      fill_in("Length", with: 10)
+      click_button("Only return monsters with Health more than")
+
       expect(current_path).to eq("/dungeons/#{@dungeon_1.id}/monsters")
       expect(page).to have_content("Goblin")
       expect(page).to have_content("Goblin Greater")

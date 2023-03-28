@@ -15,7 +15,9 @@ class Dungeon < ApplicationRecord
 
   def sort_by(params)
     if params[:sort] == 'abc'
-      monsters.order(:name)
+      sort_alphabetically
+    elsif params.include?(:length)
+      select_with_length(params)
     else
       monsters.order(created_at: :desc)
     end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/dungeons/:dungeon_id/monsters', to: 'dungeons/monsters#index'
   get '/dungeons/:dungeon_id/monsters/new', to: 'dungeons/monsters#new'
   post '/dungeons/:dungeon_id/monsters/new', to: 'dungeons/monsters#create'
+  post 'dungeons/:dungeon_id/monsters', to: 'dungeons/monsters#show'
 
   get '/monsters', to: 'monsters#index'
   get '/monsters/:id', to: 'monsters#show'

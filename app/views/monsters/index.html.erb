@@ -4,5 +4,8 @@
 <p><%= "Boss: #{monster.boss}" %></p>
 <p><%= "Health: #{monster.health}" %></p>
 <p><%= link_to "View Monster", "/monsters/#{monster.id}"%></p>
-<p><%= link_to "Update Monster", "/monsters/#{monster.id}/edit"%></p><br>
+<p>
+  <%= link_to "Update #{monster.name}", "/monsters/#{monster.id}/edit"%>
+  <%= link_to "Delete #{monster.name}", "/monsters/#{monster.id}", method: :delete %>
+</p><br>
 <% end %>

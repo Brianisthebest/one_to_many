@@ -47,7 +47,7 @@ RSpec.describe '/dungeons/:id/monsters' do
     it 'will display a link to update the monster' do
       visit "/dungeons/#{@dungeon_1.id}/monsters"
 
-      expect(page).to have_link("Update Monster", href: "/monsters/#{@monster_1.id}/edit")
+      expect(page).to have_link("Update #{@monster_1.name}", href: "/monsters/#{@monster_1.id}/edit")
     end
 
     it 'will display a link to sort monsters alphabetically' do
@@ -57,7 +57,22 @@ RSpec.describe '/dungeons/:id/monsters' do
       click_link("Sort Alphabetically")
       expect(@monster_3.name).to appear_before(@monster_2.name)
     end
-#     User Story 21, Display Records Over a Given Threshold 
+
+    it 'will display a link to delete the monster' do
+      visit "/dungeons/#{@dungeon_2.id}/monsters"
+
+      expect(page).to have_link("Delete #{@monster_2.name}")
+      expect(page).to have_link("Delete #{@monster_3.name}")
+    end
+
+    it 'will delete the monster when the link is clicked and redirect to the monster index' do
+      visit "/dungeons/#{@dungeon_2.id}/monsters"
+
+      click_link("Delete Medusa")
+      expect(current_path).to eq("/monsters")
+      expect(page).to_not have_content("Medusa")
+    end
+    # User Story 21, Display Records Over a Given Threshold 
     xit 'will have a form that allows me to input a number value' do
       visit "/dungeons/#{@dungeon_1.id}/monsters"
 

@@ -58,5 +58,19 @@ RSpec.describe "/dungeons", type: :feature do
       click_link "Edit Dungeon"
       expect(current_path).to eq("/dungeons/#{dungeon.id}/edit")
     end
+#     User Story 22, Parent Delete From Parent Index Page 
+    it 'will display a link to delete a dungeon and route to the dungeons index page' do
+      visit "/dungeons"
+
+      expect(page).to have_link("Delete #{@dungeon_1.name}")
+    end
+
+    it 'will delete the dungeon and redirect to the dungeons index page' do
+      visit "/dungeons"
+
+      click_link "Delete Big Bad Things"
+      expect(current_path).to eq("/dungeons")
+      expect(page).to_not have_content("Big Bad Things")
+    end
   end
 end

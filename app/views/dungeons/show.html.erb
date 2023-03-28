@@ -6,3 +6,4 @@
 <p><%= link_to "Edit Dungeon", "/dungeons/#{@dungeon.id}/edit" %></p>
 <p><%= link_to "Monster List","/dungeons/#{@dungeon.id}/monsters" %></p>
 <p><%= link_to "Create Monster", "/dungeons/#{@dungeon.id}/monsters/new" %></p>
+<p><%= button_to "Delete Dungeon", "/dungeons/#{@dungeon.id}", method: :delete %>

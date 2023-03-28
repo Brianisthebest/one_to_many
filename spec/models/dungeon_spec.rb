@@ -10,9 +10,9 @@ RSpec.describe Dungeon, type: :model do
       @dungeon_2 = Dungeon.create!(name: "Gross Sewers?", final_level: false,  difficulty: 2, created_at: 3.days.ago)
       @dungeon_3 = Dungeon.create!(name: "Lake of Rot", final_level: false,  difficulty: 6, created_at: 1.day.ago)
       @skeleton = @dungeon_1.monsters.create!(name: "Skeleton", boss: false, health: 10)
-      @demi_human = @dungeon_2.monsters.create!(name: "Demi Human", boss: false, health: 25)
-      @malenia = @dungeon_2.monsters.create!(name: "Malenia", boss: true, health: 200)
-      @bones = @dungeon_2.monsters.create!(name: "Bones", boss: false, health: 5)
+      @demi_human = @dungeon_2.monsters.create!(name: "Demi Human", boss: false, health: 25, created_at: 3.day.ago)
+      @malenia = @dungeon_2.monsters.create!(name: "Malenia", boss: true, health: 200, created_at: 1.days.ago)
+      @bones = @dungeon_2.monsters.create!(name: "Bones", boss: false, health: 5, created_at: 2.days.ago)
     end
       
 
@@ -22,21 +22,27 @@ RSpec.describe Dungeon, type: :model do
       end
     end
     
-    describe "instance methods" do
       it "#monster_counts" do
         expect(@dungeon_1.monster_count).to eq(1)
         expect(@dungeon_2.monster_count).to eq(3)
       end
-      #     User Story 16, Sort Parent's Children in Alphabetical Order by name 
-      it '#sort_alphabetically' do
-        expect(@dungeon_2.monsters).to eq([@demi_human, @malenia, @bones])
-        expect(@dungeon_2.sort_alphabetically).to eq([@bones ,@demi_human, @malenia])
+      # User Story 16
+      describe '#sort_alphabetically' do
+        it 'will sort alphabetically' do
+          expect(@dungeon_2.sort_alphabetically).to eq([@bones ,@demi_human, @malenia])
+       end
       end
-# As a visitor
-# When I visit the Parent's children Index Page
-# Then I see a link to sort children in alphabetical order
-# When I click on the link
-# I'm taken back to the Parent's children Index Page 
-# where I see all of the parent's children in alphabetical order
+
+      describe '#sort_by' do
+        it 'can sort by alphabetical and created time' do
+          expect(@dungeon_2.sort_by({sort: 'abc'})).to eq([@bones ,@demi_human, @malenia])
+          expect(@dungeon_2.sort_by({sort: 'created_at'})).to eq([@malenia, @bones, @demi_human])
+        end
+      end
+
+      describe '::select_monster_amount(params)' do
+        it 'will return the amount of monsters specified' do
+          expect(@dungeon_2.select_with_length({length: 50})).to eq([@malenia])
+        end
+      end
     end
-  end

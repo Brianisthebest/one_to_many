@@ -5,6 +5,7 @@ RSpec.describe '/dungeons/:id' do
     Dungeon.delete_all
     @dungeon_1 = Dungeon.create!(name: "Big Bad Things", final_level: true,  difficulty: 5)
     @dungeon_2 = Dungeon.create!(name: "Gross Sewers?", final_level: false,  difficulty: 2)
+    @dungeon_3 = Dungeon.create!(name: "Delete Me!", final_level: false,  difficulty: 1)
   end
   # User Story 2
   describe 'as a visitor, when I visit the dungeons show page' do
@@ -24,7 +25,6 @@ RSpec.describe '/dungeons/:id' do
       expect(page).to have_content("Final Level: #{@dungeon_2.final_level}.")
       expect(page).to have_content("Difficulty: #{@dungeon_2.difficulty}.")
     end
-
     # User Story 7
     it 'well show the count for monsters in dungeon' do
       visit "/dungeons/#{@dungeon_1.id}"
@@ -77,6 +77,24 @@ RSpec.describe '/dungeons/:id' do
       click_on("Create Monster")
 
       expect(current_path).to eq("/dungeons/#{@dungeon_1.id}/monsters/new")
+    end
+    # User Story 19
+    it 'will have a button to delete the parent' do
+      visit "dungeons/#{@dungeon_3.id}"
+
+      expect(page).to have_button("Delete Dungeon")
+    end
+
+    it 'can delete the dungeon from the index page' do
+      @monster_1 = @dungeon_3.monsters.create!(name: "Goblin", boss: false, health: 15, dungeon_id: @dungeon_3.id)
+      visit "dungeons/#{@dungeon_3.id}"
+      click_button "Delete Dungeon"
+
+      expect(current_path).to eq("/dungeons")
+      expect(page).to_not have_content(@dungeon_3.name)
+
+      visit "/monsters"
+      expect(page).to_not have_content(@monster_1.name)
     end
   end
 end

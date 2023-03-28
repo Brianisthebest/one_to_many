@@ -34,7 +34,7 @@ RSpec.describe '/monster', type: :feature do
     it 'will display a link to update the monster' do
       visit "/monsters"
 
-      expect(page).to have_link("Update Monster", href: "/monsters/#{@monster_1.id}/edit")
+      expect(page).to have_link("Update #{@monster_1.name}", href: "/monsters/#{@monster_1.id}/edit")
     end
     # User Story 15
     it 'will only display monsters with boss true' do
@@ -42,6 +42,21 @@ RSpec.describe '/monster', type: :feature do
 
       expect(page).to have_content("Name: Medusa")
       expect(page).to have_content("Name: BBEG")
+    end
+    # User Story 23, Child Delete From Childs Index Page 
+    it 'will display a link to delete the monster' do
+      visit "/monsters"
+
+      expect(page).to have_link("Delete #{@monster_1.name}")
+      expect(page).to have_link("Delete #{@monster_2.name}")
+    end
+
+    it 'will delete the monster when the link is clicked and redirect to the monster index' do
+      visit "/monsters"
+
+      click_link("Delete Goblin")
+      expect(current_path).to eq("/monsters")
+      expect(page).to_not have_content("Goblin")
     end
   end
 end

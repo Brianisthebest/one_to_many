@@ -36,6 +36,7 @@ RSpec.describe Dungeon, type: :model do
       describe '#sort_by' do
         it 'can sort by alphabetical and created time' do
           expect(@dungeon_2.sort_by({sort: 'abc'})).to eq([@bones ,@demi_human, @malenia])
+          expect(@dungeon_2.sort_by({sort: 'amnt', length: 10 })).to eq([ @demi_human, @malenia])
           expect(@dungeon_2.sort_by({sort: 'created_at'})).to eq([@malenia, @bones, @demi_human])
         end
       end

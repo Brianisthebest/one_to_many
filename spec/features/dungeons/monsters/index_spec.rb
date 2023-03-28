@@ -94,6 +94,5 @@ RSpec.describe '/dungeons/:id/monsters' do
       expect(page).to have_content("Goblin Greater")
       expect(page).to have_no_content("Goblin Less")
     end
-# Then I am brought back to the current index page with only the records that meet that threshold shown.
   end
 end

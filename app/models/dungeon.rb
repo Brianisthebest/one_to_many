@@ -16,7 +16,7 @@ class Dungeon < ApplicationRecord
   def sort_by(params)
     if params[:sort] == 'abc'
       sort_alphabetically
-    elsif params.include?(:length)
+    elsif params[:sort] == 'amnt'
       select_with_length(params)
     else
       monsters.order(created_at: :desc)
@@ -24,10 +24,6 @@ class Dungeon < ApplicationRecord
   end
 
   def select_with_length(params)
-    if params.include?(:length)
-      monsters.where("health >= ?", params[:length])
-    else
-      monsters
-    end
+    monsters.where("health >= ?", params[:length])
   end
 end

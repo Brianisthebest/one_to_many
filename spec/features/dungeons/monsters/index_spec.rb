@@ -57,5 +57,18 @@ RSpec.describe '/dungeons/:id/monsters' do
       click_link("Sort Alphabetically")
       expect(@monster_3.name).to appear_before(@monster_2.name)
     end
+#     User Story 21, Display Records Over a Given Threshold 
+    xit 'will have a form that allows me to input a number value' do
+      visit "/dungeons/#{@dungeon_1.id}/monsters"
+
+      expect(page).to have_field("Only return records with more Health than")
+    end
+# As a visitor
+# When I visit the Parent's children Index Page
+# I see a form that allows me to input a number value
+# hmmm, the form is throwing me off. I'll come back.
+
+# When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+# Then I am brought back to the current index page with only the records that meet that threshold shown.
   end
 end

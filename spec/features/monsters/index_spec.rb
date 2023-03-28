@@ -43,5 +43,17 @@ RSpec.describe '/monster', type: :feature do
       expect(page).to have_content("Name: Medusa")
       expect(page).to have_content("Name: BBEG")
     end
+    # User Story 23, Child Delete From Childs Index Page 
+    it 'will display a link to delete the monster' do
+      visit "/monsters"
+
+      expect(page).to have_link("Delete Monster")
+    end
+
+# As a visitor
+# When I visit the `child_table_name` index page or a parent `child_table_name` index page
+# Next to every child, I see a link to delete that child
+# When I click the link
+# I should be taken to the `child_table_name` index page where I no longer see that child
   end
 end
